@@ -21,4 +21,8 @@ describe('', function() {
         expect(Money.franc(10)).toMatchObject(five.times(2))
         expect(Money.franc(15)).toMatchObject(five.times(3))
     })
+    test('testCurrency', () => {
+        expect("USD").toBe(Money.dollar(1).makeCurrency())
+        expect("CHF").toBe(Money.franc(1).makeCurrency())
+    })
 })
