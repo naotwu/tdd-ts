@@ -1,4 +1,4 @@
-import { Money } from '../app/money'
+import { Franc, Money } from '../app/money'
 
 describe('', function() {
 
@@ -9,11 +9,11 @@ describe('', function() {
     })
     
     test('testEquality', () => {
-        expect(true).toBe(Money.dollar(5).equals(Money.dollar(5)))
-        expect(false).toBe(Money.dollar(5).equals(Money.dollar(6)))
-        expect(true).toBe(Money.franc(5).equals(Money.franc(5)))
-        expect(false).toBe(Money.franc(5).equals(Money.franc(6)))
-        expect(false).toBe(Money.franc(5).equals(Money.dollar(5)))
+        expect(Money.dollar(5).equals(Money.dollar(5))).toBe(true)
+        expect(Money.dollar(5).equals(Money.dollar(6))).toBe(false)
+        expect(Money.franc(5).equals(Money.franc(5))).toBe(true)
+        expect(Money.franc(5).equals(Money.franc(6))).toBe(false)
+        expect(Money.franc(5).equals(Money.dollar(5))).toBe(false)
     })
     
     test('testFrancMultiplication', () => {
@@ -21,8 +21,13 @@ describe('', function() {
         expect(Money.franc(10)).toMatchObject(five.times(2))
         expect(Money.franc(15)).toMatchObject(five.times(3))
     })
+
     test('testCurrency', () => {
-        expect("USD").toBe(Money.dollar(1).makeCurrency())
-        expect("CHF").toBe(Money.franc(1).makeCurrency())
+        expect(Money.dollar(1).makeCurrency()).toBe("USD")
+        expect(Money.franc(1).makeCurrency()).toBe("CHF")
+    })
+
+    test('testDifferentClassEquality', () => {
+        expect(new Money(10, "CHF").equals(new Franc(10, "CHF"))).toBe(true)
     })
 })
