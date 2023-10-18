@@ -1,3 +1,5 @@
+import { Bank } from '../app/Bank'
+import { Expression } from '../app/Expression'
 import { Money } from '../app/money'
 
 describe('', function() {
@@ -17,6 +19,14 @@ describe('', function() {
     test('testCurrency', () => {
         expect(Money.dollar(1).makeCurrency()).toBe("USD")
         expect(Money.franc(1).makeCurrency()).toBe("CHF")
+    })
+
+    test('testSimpleAddition', () => {
+        const five = Money.dollar(5)
+        const bank: Bank = new Bank()
+        const sum: Expression = five.plus(five)
+        const reduced: Money = bank.reduce(sum, "USD")
+        expect(sum).toEqual(Money.dollar(10))
     })
 
 })

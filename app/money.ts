@@ -1,4 +1,6 @@
-export class Money {
+import { Expression } from "./Expression"
+
+export class Money implements Expression{
 
     public amount:number
     public currency:string
@@ -31,5 +33,9 @@ export class Money {
 
     public toString() {
         return this.amount + " " + this.currency
+    }
+
+    public plus(addend:Money): Expression {
+        return new Money(this.amount + addend.amount, this.currency)
     }
 }
