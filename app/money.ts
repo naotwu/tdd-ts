@@ -1,4 +1,5 @@
 import { Expression } from "./Expression"
+import { Sum } from "./Sum"
 
 export class Money implements Expression{
 
@@ -36,6 +37,6 @@ export class Money implements Expression{
     }
 
     public plus(addend:Money): Expression {
-        return new Money(this.amount + addend.amount, this.currency)
+        return new Sum(this, addend)
     }
 }

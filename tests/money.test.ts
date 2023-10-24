@@ -1,5 +1,6 @@
 import { Bank } from '../app/Bank'
 import { Expression } from '../app/Expression'
+import { Sum } from '../app/Sum'
 import { Money } from '../app/money'
 
 describe('', function() {
@@ -27,6 +28,21 @@ describe('', function() {
         const sum: Expression = five.plus(five)
         const reduced: Money = bank.reduce(sum, "USD")
         expect(sum).toEqual(Money.dollar(10))
+    })
+
+    test('testPlusReturnsSum', () => {
+        const five = Money.dollar(5)
+        const result: Expression = five.plus(five)
+        const sum:Sum = result as Sum
+        expect(sum.augend).toEqual(five)
+        expect(sum.augend).toEqual(five)
+    })
+
+    test('testReduceSum', () => {
+        const sum: Expression = new Sum(Money.dollar(3), Money.dollar(4))
+        const bank: Bank = new Bank()
+        const result: Money = bank.reduce(sum, "USD")
+        expect(Money.dollar(7)).toEqual(result)
     })
 
 })
