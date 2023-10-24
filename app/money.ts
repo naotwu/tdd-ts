@@ -39,4 +39,8 @@ export class Money implements Expression{
     public plus(addend:Money): Expression {
         return new Sum(this, addend)
     }
+
+    public reduce(to: string) {
+        return this
+    }
 }

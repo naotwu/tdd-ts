@@ -27,7 +27,7 @@ describe('', function() {
         const bank: Bank = new Bank()
         const sum: Expression = five.plus(five)
         const reduced: Money = bank.reduce(sum, "USD")
-        expect(sum).toEqual(Money.dollar(10))
+        expect(reduced).toEqual(Money.dollar(10))
     })
 
     test('testPlusReturnsSum', () => {
@@ -43,6 +43,12 @@ describe('', function() {
         const bank: Bank = new Bank()
         const result: Money = bank.reduce(sum, "USD")
         expect(Money.dollar(7)).toEqual(result)
+    })
+
+    test('testReduceMoney', () => {
+        const bank: Bank = new Bank()
+        const result: Money = bank.reduce(Money.dollar(1), "USD")
+        expect(result).toEqual(Money.dollar(1))
     })
 
 })
